@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+
+{% block title %}FONASA - Paciente Más Anciano en Sala de Espera{% endblock %}
+
+{% block content %}
+    <style>
+        .paciente-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #1a1a1a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .paciente-card h3 {
+            margin-top: 0; /* Ajusta este valor según sea necesario */
+            margin-bottom: 10px;
+            color: #fff; /* Añadido: Color blanco para el texto */
+        }
+
+        .paciente-card p {
+            margin: 8px 0;
+            color: #fff; /* Añadido: Color blanco para el texto */
+        }
+    </style>
+
+    <div>
+        <h2>Paciente Más Anciano en Sala de Espera</h2>
+        {% if sin_pacientes %}
+            <p>No hay pacientes en la sala de espera.</p>
+        {% else %}
+            <div class="paciente-card">
+                <div class="titulo"></div><h3>Información del Paciente</h3>
+                <p>Historia Clínica: {{ paciente_mas_anciano.historia_clinica }}</p>
+                <p>Nombre: {{ paciente_mas_anciano.nombre }}</p>
+                <p>Edad: {{ paciente_mas_anciano.edad }}</p>
+                <p>Grupo Edad: {{ paciente_mas_anciano.grupo_edad }}</p>
+                <p>Peso: {{ paciente_mas_anciano.peso }} Kg</p>
+                <p>Estatura: {{ paciente_mas_anciano.estatura }} Cm</p>
+                <p>Fumador: {% if paciente_mas_anciano.fumador %}SI{% else %}NO{% endif %}</p>
+                <p>Años Fumador: {{ paciente_mas_anciano.anos_fumador }}</p>
+                <p>Dieta: {% if paciente_mas_anciano.dieta_asignada %}SI{% else %}NO{% endif %}</p>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'home' %}">Volver a Inicio</a>
+    </div>
+{% endblock %}

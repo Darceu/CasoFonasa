@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+
+{% block title %}FONASA - Listar Pacientes Fumadores Urgentes{% endblock %}
+
+{% block content %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            background-color: #000000; 
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+
+    <div>
+        <h2>Listado de Pacientes Fumadores Urgentes</h2>
+        {% if pacientes_fumadores_urgentes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Historia Clínica</th>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Grupo Edad</th>
+                        <th>Estatura</th>
+                        <th>Peso</th>
+                        <th>Prioridad</th>
+                        <th>Fumador</th>
+                        <th>Años Fumador</th>
+                        <th>Dieta Asignada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for paciente in pacientes_fumadores_urgentes %}
+                        <tr>
+                            <td>{{ paciente.historia_clinica }}</td>
+                            <td>{{ paciente.nombre }}</td>
+                            <td>{{ paciente.edad }}</td>
+                            <td>{{ paciente.grupo_edad }}</td>
+                            <td>{{ paciente.estatura}} Cm</td>
+                            <td>{{ paciente.peso}} Kg</td>
+                            <td>{{ paciente.prioridad}}</td>
+                            <td>{% if paciente.fumador %}SI{% else %}NO{% endif %}</td>
+                            <td>{{ paciente.anos_fumador }}</td>
+                            <td>{% if paciente.dieta_asignada %}SI{% else %}NO{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay pacientes fumadores urgentes.</p>
+        {% endif %}
+
+        <a href="{% url 'home' %}">Volver a Inicio</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block title %}FONASA - Consulta con más Pacientes Atendidos{% endblock %}
+
+{% block content %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            background-color: #000000; /* Color de fondo para todas las filas */
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+
+    <h2>Consulta con más Pacientes Atendidos</h2>
+    {% if consultas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>PACIENTES ATENDIDOS</th>
+                    <th>ESPECIALISTA</th>
+                    <th>ESTADO</th>
+                    <th>TIPO CONSULTA</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for consulta in consultas %}
+                    <tr>
+                        <td>{{ consulta.pacientes_atendidos }}</td>
+                        <td>{{ consulta.especialista }}</td>
+                        <td>{{ consulta.estado }}</td>
+                        <td>{{ consulta.tipo_consulta }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay consultas registradas.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Volver a Inicio</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block title %}FONASA - Atender Paciente{% endblock %}
+
+{% block content %}
+    <h2>Atender Paciente</h2>
+    {% if consultas_disponibles %}
+      <p>Consultas Disponibles:</p>
+      <ul>
+        {% for consulta in consultas_disponibles %}
+          <li>{{ consulta }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No hay consultas disponibles en este momento.</p>
+    {% endif %}
+
+    {% if pacientes_en_sala_espera %}
+      <p>Pacientes en Sala de Espera:</p>
+      <ul>
+        {% for paciente in pacientes_en_sala_espera %}
+          <li>{{ paciente }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No hay pacientes en sala de espera.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Volver a Inicio</a>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block title %}FONASA - Lista de Consultas{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        background-color: #000000; /* Color de fondo para todas las filas */
+    }
+
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
+</style>
+    <h2>Lista de Consultas</h2>
+    {% if consultas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Pacientes Atendidos</th>
+                    <th>Especialista</th>
+                    <th>Estado</th>
+                    <th>Tipo Consulta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for consulta in consultas %}
+                    <tr>
+                        <td>{{ consulta.pacientes_atendidos}}</td>
+                        <td>{{ consulta.especialista}}</td>
+                        <td>{{ consulta.estado }}</td>
+                        <td>{{ consulta.tipo_consulta }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay consultas registradas.</p>
+    {% endif %}
+    <a href="{% url 'home' %}">Volver a Inicio</a>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block title %}FONASA - Listar Pacientes Mayor Riesgo{% endblock %}
+
+{% block content %}
+<style>
+    .riesgo-card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 20px 0;
+        background-color: #1a1a1a;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .riesgo-card h3 {
+        margin-top: 0; /* Ajusta este valor según sea necesario */
+        margin-bottom: 10px;
+        color: #fff; /* Añadido: Color blanco para el texto */
+    }
+
+    .riesgo-card p {
+        margin: 8px 0;
+        color: #fff; /* Añadido: Color blanco para el texto */
+    }
+</style>
+
+<div>
+    <h2>Listado de Pacientes con Mayor Riesgo</h2>
+    {% if pacientes_mayor_riesgo %}
+        {% for paciente in pacientes_mayor_riesgo %}
+            <div class="riesgo-card">
+                <h3>Información del Paciente</h3>
+                <p>Historia Clínica: {{ paciente.historia_clinica }}</p>
+                <p>Nombre: {{ paciente.nombre }}</p>
+                <p>Edad: {{ paciente.edad }}</p>
+                <p>Grupo Edad: {{ paciente.grupo_edad }}</p>
+                <p>Peso: {{ paciente.peso }} Kg</p>
+                <p>Estatura: {{ paciente.estatura }} Cm</p>
+                <p>Fumador: {% if paciente.fumador %}SI{% else %}NO{% endif %}</p>
+                <p>Años Fumador: {{ paciente.anos_fumador }}</p>
+                <p>Dieta Asignada: {% if paciente.dieta_asignada %}SI{% else %}NO{% endif %}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay pacientes en riesgo.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Volver a Inicio</a>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block title %}FONASA - Inicio{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Bienvenido al Portal Fonasa</h1>
+        <p>Seleccione una opción:</p>
+
+        <form action="{% url 'listar_pacientes_mayor_riesgo' %}" method="get">
+            {% csrf_token %}
+            <label for="historia_clinica">Número de Historia Clínica:</label>
+            <input type="number" name="historia_clinica" value="{{ historia_clinica_default }}" required>
+            <button type="submit">Listar Pacientes Mayor Riesgo</button>
+        </form>
+
+        <ul>
+            <li><a href="{% url 'atender_paciente' %}">Atender Paciente</a></li>
+            <li><a href="{% url 'consulta_mas_pacientes_atendidos' %}">Consulta con más Pacientes Atendidos</a></li>
+            <li><a href="{% url 'formulario_add_consulta' %}">Añadir Consulta</a></li>
+            <li><a href="{% url 'formulario_add_paciente' %}">Añadir Paciente</a></li>
+            <li><a href="{% url 'liberar_consultas' %}">Liberar Consultas</a></li>
+            <li><a href="{% url 'lista_consultas' %}">Ver Lista de Consultas</a></li>
+            <li><a href="{% url 'lista_pacientes' %}">Ver Lista de Pacientes</a></li>
+            <li><a href="{% url 'listar_pacientes_fumadores_urgentes' %}">Ver Lista Pacientes Fumadores Urgentes</a></li>
+            <li><a href="{% url 'paciente_mas_anciano' %}">Ver Paciente Más Anciano</a></li> 
+        </ul>
+    </div>
+{% endblock %}
